@@ -1,11 +1,14 @@
 package controller;
 
 import model.Budget;
+import model.InstallationType;
 import model.MyMap;
 import model.Statistic;
 import view.UI;
 
 public class Game {
+	
+
 	public static void main (String[] args)
 	{
 		// Default value of game
@@ -25,7 +28,8 @@ public class Game {
 		map = new MyMap(mapSize[0], mapSize[1]);
 		budget = new Budget(baseMoney);
 		stat = new Statistic(basePopulation, baseIFC);
-		//UI . showCommands();
+		UI . showCommands();
+		UI.showInstallationList();
 		isEnd = false;
 		roundNb = 0;
 		while (isEnd != true) {
@@ -46,10 +50,24 @@ public class Game {
 			case "H":
 				UI.showCommands();
 				break;
+				
 			case "S":
 				UI.showStatistic(stat);
 				break;
+				
+			case "L":
+				UI.showInstallationList();
+				break;
+				
 			case "B":
+				
+				String installationType;
+				int [] coordinate;
+				
+				installationType = UserInput.chooseInstallationType();
+				coordinate = UserInput.chooseCoordinate();
+				UserInput.createInstallation(installationType, coordinate);
+				
 				break;
 			case "F":
 				break;			
@@ -62,4 +80,5 @@ public class Game {
 		//return (roundNb += 1);
 		return 0;
 	}
+	
 }
