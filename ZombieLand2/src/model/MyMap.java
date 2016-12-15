@@ -1,23 +1,9 @@
 package model;
 
-/**
- * A class of map implying a width, a height and a grid coordinate
- */
-
 public class MyMap {
 	private int width;
 	private int height;
 	private int[][] grid;
-	
-	/**
-	 * Initialize this new map as an array of arrays with a given width and a given height
-	 * @param width
-	 * 		  The width of this new map
-	 * @param height
-	 * 		  The height of this new map
-	 * @param grid
-	 * 		  the array of arrays representing this new map
-	 */
 	
 	public MyMap(int x, int y) {
 		this.width = x;
