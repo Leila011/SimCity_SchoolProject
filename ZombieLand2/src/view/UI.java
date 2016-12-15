@@ -1,6 +1,8 @@
 package view;
 
 
+import java.io.PrintStream;
+
 /*
  * User interface: diplay the user
  */
@@ -12,7 +14,7 @@ package view;
 
 import java.util.Scanner;
 
-import model.budget;
+import model.Budget;
 import model.Installation;
 import model.InstallationType;
 import model.MyMap;
@@ -44,12 +46,14 @@ public class UI {
 		s.append(" \nH - show commands");
 		s.append(" \nS - show statistics");
 		s.append(" \nB - show budget");
+		s.append(" \nL - show installation list");
 		s.append(" \nF - finish round");
 		s.append(" \nE - exit the game");
 		s.append(" \nSet x, y installation - set up an installation at the coordinate x, y");
 		s.append(" \nRemove x, y - remove an installation at the coordinate x, y");
 		s.append(" \nInspect - inspect the installation located at the coordinate x, y");
 		System.out.println(s);
+		System.out.println();
 		return ;	
 	}
 	
@@ -63,6 +67,7 @@ public class UI {
 			System.out.println(" | ");
 		}
 		System.out.println();
+		return;
 	}
 	
 	// Diplays statistics
@@ -74,6 +79,8 @@ public class UI {
 		System.out.println("Scocial score: " +statistic.getSocialScore());
 		System.out.println("Accomodation: " +statistic.getAccomodationScore());
 		System.out.println("Basic need score: " +statistic.getBasicNeedScore());
+		
+		return;
 	}
 	
 	// Diplay data relative to budget
@@ -82,11 +89,51 @@ public class UI {
 		System.out.println("budget: " + budget.getBudget() + " hours");
 		System.out.println("Incoming money: " + budget.getIncomingMoney() +"hours");
 		System.out.println("Outgoing expense: " + budget.getOutgoingExpense() + "hours");
+		return;
 	}
 	
 	// Display ending sentence	
 	static public void showEnd() {
-		   System.out.println("You choosed to abbandon your community and tempt your chance by yourself... Only god can help you now!");
+		System.out.println("You choosed to abbandon your community and tempt your chance by yourself... Only god can help you now!");
+		return;
+	}
+	
+	// Display installation list and characteristic
+	static public void showInstallationList(){
+				
+		System.out.format("%-10s", "Id");
+		System.out.print( "|" );
+		System.out.format("%-25s", "Name");
+		System.out.print( "|" );
+		System.out.format("%-15s", "Cost");
+		System.out.print( "|" );
+		System.out.format("%-15s", "Surface");
+		System.out.print( "|" );
+		System.out.format("%-15s", "Number of cell");
+		System.out.print( "|" );
+		System.out.format("%-17s", "Number of people");
+		System.out.print( "|" );
+		System.out.println();
+		System.out.println("*******************************************************************************************************");
+		
+		for (InstallationType i  : InstallationType.values()){
+			System.out.format("%-10s", i.getId());
+			System.out.print( "|" );
+			System.out.format("%-25s", i.getInstallationName());
+			System.out.print( "|" );
+			System.out.format("%15s",i.getInstallationCost());
+			System.out.print( "|" );
+			System.out.format("%15s",  i.getBuildingSpace());
+			System.out.print( "|" );
+			System.out.format("%15s",  i.getNbCellEffect());
+			System.out.print( "|" );
+			System.out.format("%17s", i.getNbPersonEffect());
+			System.out.print( "|" );
+			
+			System.out.println();
+		}
+	
+		return ;
 	}
 	
 	//Inspect an installation
@@ -104,5 +151,7 @@ public class UI {
 			System.out.println(s);
 			return ;
 		}
+	
+	
 	
 }
